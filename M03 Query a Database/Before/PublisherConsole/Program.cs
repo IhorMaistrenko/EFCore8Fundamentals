@@ -2,7 +2,7 @@
 using PublisherDomain;
 
 using PubContext _context = new();
-QueryFilters();
+// QueryFilters();
 
 void QueryFilters()
 {
@@ -12,7 +12,7 @@ void QueryFilters()
         .ToList();
 }
 
-AddSomeMoreAuthors();
+// AddSomeMoreAuthors();
 
 void AddSomeMoreAuthors()
 {
@@ -25,7 +25,7 @@ void AddSomeMoreAuthors()
     _context.SaveChanges();
 }
 
-SkipAndTakeAuthors();
+// SkipAndTakeAuthors();
 
 void SkipAndTakeAuthors()
 {
@@ -42,4 +42,15 @@ void SkipAndTakeAuthors()
             Console.WriteLine($"{author.FirstName} {author.LastName}");
         }
     }
+}
+
+SortAuthors();
+
+void SortAuthors()
+{
+    var authorsByLastName = _context.Authors
+        .OrderBy(a => a.LastName)
+        .ThenBy(a => a.FirstName)
+        .ToList();
+    authorsByLastName.ForEach(a => Console.WriteLine($"{a.FirstName} {a.LastName}"));
 }
