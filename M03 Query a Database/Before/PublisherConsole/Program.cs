@@ -1,15 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PublisherData;
-using PublisherDomain;
+﻿using PublisherData;
 
-GetAuthors();
+using PubContext _context = new();
+QueryFilters();
 
-void GetAuthors()
+void QueryFilters()
 {
-    using var context = new PubContext();
-    var authors = context.Authors.ToList();
-    foreach (var author in authors)
-    {
-        Console.WriteLine(author.FirstName + " " + author.LastName);
-    }
+    var name = "Josie";
+    var authors = _context.Authors
+        .Where(a => a.FirstName == name)
+        .ToList();
 }
