@@ -54,3 +54,12 @@ void SortAuthors()
         .ToList();
     authorsByLastName.ForEach(a => Console.WriteLine($"{a.FirstName} {a.LastName}"));
 }
+
+QueryAggregate();
+
+void QueryAggregate()
+{
+    var author = _context.Authors
+        .OrderByDescending(a => a.FirstName)
+        .FirstOrDefault(a => a.LastName == "Lerman");
+}
